@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-
 const cors = require('cors');
-app.use(cors());
-
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
+const parser = require('body-parser');
+
+app.use(parser.json());
+app.use(cors())
 
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
